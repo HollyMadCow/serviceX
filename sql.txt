@@ -1,0 +1,58 @@
+create table jklist
+(
+	id int auto_increment
+		primary key,
+	pointid int null,
+	pointname varchar(50) not null,
+	la float(10,6) null,
+	geohash char(11) not null,
+	kindof varchar(10) not null,
+	batch varchar(10) null,
+	buildby varchar(20) null,
+	lo float(11,6) null,
+	area varchar(30) not null
+)
+;
+
+create index idx_lo_la
+	on jklist (lo, la)
+;
+
+create index jklist_geohash_index
+	on jklist (geohash)
+;
+
+create table temppointlist
+(
+	id int auto_increment
+		primary key,
+	pointname varchar(64) not null,
+	pointlo float(10,6) null,
+	pointla float(10,6) null,
+	pointowner varchar(32) null,
+	saveddate datetime not null,
+	pointid int null
+)
+;
+
+create table temppointphotolist
+(
+	id int auto_increment
+		primary key,
+	pointid int not null,
+	photopath varchar(300) null,
+	addeddate datetime not null
+)
+;
+
+create table user
+(
+	id int auto_increment
+		primary key,
+	username varchar(30) not null,
+	password varchar(64) not null,
+	isadmin tinyint(1) default '0' not null,
+	token varchar(32) null
+)
+;
+
