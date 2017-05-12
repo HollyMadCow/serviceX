@@ -45,8 +45,6 @@ class User:
             cursor.close()
             db.close()
 
-
-
     def read_usersaved(self):
         pass
 

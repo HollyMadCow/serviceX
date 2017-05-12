@@ -12,10 +12,10 @@ from App import app
 from werkzeug.utils import secure_filename
 import os
 from datetime import datetime
-ALLOWED_EXTENSIONS = set(['png', 'jpg', 'jpeg', 'gif'])
+ALLOWED_EXTENSIONS = set(['png', 'JPG', 'jpg', 'jpeg', 'gif'])
 
 
-def verify_user(username,password):
+def verify_user(username, password):
 	db = MySQLdb.connect(host="localhost", user="yhwjjkwh", passwd="zlw255151", db="jkwh", charset="utf8")
 	cursor = db.cursor()
 	sql = "SELECT * FROM user WHERE username=%s AND password = %s"
@@ -99,6 +99,8 @@ class UploadImgFile(Resource):
 			file = request.files[key]
 			if file and allowed_file(file.filename):
 				try:
+					if os.path.exists(app.config['UPLOAD_FOLDER']) is False:
+						os.makedirs(app.config['UPLOAD_FOLDER'])
 					tempfilename = file.filename
 					tempfilename = "." + tempfilename.split(".")[-1]
 					filename = datetime.now().strftime("%Y%m%d%H%M%S%f") + tempfilename

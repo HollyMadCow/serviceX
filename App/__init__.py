@@ -13,14 +13,11 @@ from datetime import datetime
 from flask.ext.security import SQLAlchemyUserDatastore, Security
 
 #path = os.getcwd()
-datepath = datetime.now().strftime('%Y%m%d')
-# temppath = os.path.join(os.getcwd(), datepath)
-temppath = os.path.join(os.getcwd(), 'uploads')
-UPLOAD_FOLDER = os.path.join(temppath, datepath )
+# datepath = datetime.now().strftime('%Y%m%d')
+# # temppath = os.path.join(os.getcwd(), datepath)
+# temppath = os.path.join(os.getcwd(), 'uploads')
+UPLOAD_FOLDER = os.path.join(os.getcwd(), 'uploads')
 # UPLOAD_FOLDER = os.path.join(os.getcwd(), 'uploads')
-if os.path.exists(UPLOAD_FOLDER) is False:
-	os.makedirs(UPLOAD_FOLDER)
-
 app = Flask(__name__)
 app.config.from_object(config)
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
